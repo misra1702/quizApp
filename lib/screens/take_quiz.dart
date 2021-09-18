@@ -29,6 +29,12 @@ class QuizState extends ChangeNotifier {
       curve: Curves.easeOut,
     );
   }
+
+  void goToCongrats() async {
+    print("Going");
+    controller.jumpToPage(10);
+    notifyListeners();
+  }
 }
 
 class TakeQuiz extends StatelessWidget {
@@ -135,7 +141,6 @@ class CongratsQuiz extends StatelessWidget {
   void func() async {
     rep = await Globals.userRef.doc(Globals.cAuth.getUser!.uid).get().then(
       (value) {
-        print(value);
         return Report.fromMap(value.data()!);
       },
     ).catchError(

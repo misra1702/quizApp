@@ -4,6 +4,7 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz_app/screens/leaderboard.dart';
 import 'package:quiz_app/screens/login.dart';
 import 'package:quiz_app/screens/quiz_scr.dart';
 import 'package:quiz_app/screens/sign_up.dart';
@@ -29,6 +30,7 @@ class MyHome extends StatelessWidget {
         '/login': (context) => Login(),
         '/quiz_scr': (context) => QuizScr(),
         '/take_quiz': (context) => TakeQuiz(),
+        '/leaderboard':(context)=>LeaderBoard(),
       },
 
       // Theme

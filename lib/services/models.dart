@@ -42,11 +42,11 @@ class Quiz2 {
 }
 
 class Report {
-  String email;
+  String emailID;
   int score;
   List<String> quizSolved;
 
-  Report({required this.email, required this.quizSolved, required this.score});
+  Report({required this.emailID, required this.quizSolved, required this.score});
 
   factory Report.fromMap(Map<String, dynamic> data) {
     List<dynamic> temp = data['quizSolved'].map((e) {
@@ -58,7 +58,7 @@ class Report {
     }
     List<String>.from(temp);
     return Report(
-      email: data['email'],
+      emailID: data['emailID'],
       score: data['score'],
       quizSolved: qSolved,
     );

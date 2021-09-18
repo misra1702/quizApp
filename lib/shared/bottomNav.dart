@@ -21,9 +21,9 @@ class AppBottomNav extends StatelessWidget {
           case 0:
             // do nuttin
             break;
-          // case 1:
-          //   Navigator.pushNamed(context, '/about');
-          //   break;
+          case 1:
+            Navigator.pushNamed(context, '/leaderboard');
+            break;
           // case 2:
           //   Navigator.pushNamed(context, '/profile');
           //   break;
