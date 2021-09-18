@@ -57,70 +57,76 @@ class _LeaderBoardState extends State<LeaderBoard> {
               return Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          cUser?.email ?? "",
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.center,
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            text: "${cInd + 1}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
-                              color: Theme.of(context).accentColor,
-                            ),
-                            children: [
-                              TextSpan(
-                                text: "/${rep.length}",
-                                style: Theme.of(context).textTheme.bodyText2,
-                              ),
-                            ],
+                    margin: EdgeInsets.fromLTRB(10, 20, 10, 60),
+                    padding: EdgeInsets.all(10),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            cUser?.email ?? "",
+                            style: TextStyle(fontSize: 22),
+                            textAlign: TextAlign.center,
                           ),
-                        ),
-                      ],
+                          RichText(
+                            text: TextSpan(
+                              text: "${cInd + 1}",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                color: Theme.of(context).accentColor,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: "/${rep.length}",
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: rep.length,
-                      itemBuilder: (context, index) {
-                        Widget? lead;
-                        switch (index) {
-                          case 0:
-                            lead = Icon(
-                              FontAwesomeIcons.trophy,
-                              color: Colors.yellow,
-                            );
-                            break;
-                          case 1:
-                            lead = Icon(
-                              FontAwesomeIcons.trophy,
-                              color: Colors.grey.shade300,
-                            );
-                            break;
-                          case 2:
-                            lead = Icon(
-                              FontAwesomeIcons.trophy,
-                              color: Colors.yellow.shade900,
-                            );
-                            break;
-                          default:
-                            lead = Text("${index + 1}");
-                            break;
-                        }
-                        return Card(
-                          child: ListTile(
-                            leading: lead,
-                            title: Text(rep[index].emailID, style: tempStyle),
-                            trailing: Text(rep[index].score.toString()),
-                          ),
-                        );
-                      },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: ListView.builder(
+                        itemCount: rep.length,
+                        itemBuilder: (context, index) {
+                          Widget? lead;
+                          switch (index) {
+                            case 0:
+                              lead = Icon(
+                                FontAwesomeIcons.trophy,
+                                color: Colors.yellow,
+                              );
+                              break;
+                            case 1:
+                              lead = Icon(
+                                FontAwesomeIcons.trophy,
+                                color: Colors.grey.shade300,
+                              );
+                              break;
+                            case 2:
+                              lead = Icon(
+                                FontAwesomeIcons.trophy,
+                                color: Colors.yellow.shade900,
+                              );
+                              break;
+                            default:
+                              lead = Text("${index + 1}");
+                              break;
+                          }
+                          return Card(
+                            child: ListTile(
+                              leading: lead,
+                              title: Text(rep[index].emailID, style: tempStyle),
+                              trailing: Text(rep[index].score.toString()),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
