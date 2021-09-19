@@ -1,5 +1,5 @@
 # QuizApp
-![alt text](SingUp.png?raw=true)
+![alt text](SignUp.png?raw=true)
 
 A new Flutter project.
 
