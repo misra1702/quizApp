@@ -30,7 +30,7 @@ class MyHome extends StatelessWidget {
         '/login': (context) => Login(),
         '/quiz_scr': (context) => QuizScr(),
         '/take_quiz': (context) => TakeQuiz(),
-        '/leaderboard':(context)=>LeaderBoard(),
+        // '/leaderboard':(context)=>LeaderBoard(),
       },
 
       // Theme

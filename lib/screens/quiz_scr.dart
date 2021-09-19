@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quiz_app/screens/leaderboard.dart';
+import 'package:quiz_app/screens/random_quiz.dart';
 import 'package:quiz_app/services/auth.dart';
 import 'package:quiz_app/services/db.dart';
+import 'package:quiz_app/services/globals.dart';
 import 'package:quiz_app/services/models.dart';
 import 'package:quiz_app/services/parseJson.dart';
-import 'package:quiz_app/shared/bottomNav.dart';
 
 class QuizScr extends StatefulWidget {
   const QuizScr({Key? key}) : super(key: key);
@@ -16,6 +18,21 @@ class QuizScr extends StatefulWidget {
 
 class _QuizScrState extends State<QuizScr> {
   AuthService auth = AuthService();
+  int index = 0;
+  List<Widget> bodyList = [
+    QuizScrBody(),
+    LeaderBoard(),
+  ];
+  void func(int cIndex) async {
+    if (cIndex == 2) {
+      Quiz2List quiz = await RandomQuiz().getQuiz();
+      Navigator.of(context).pushNamed('/take_quiz', arguments: quiz);
+      return;
+    }
+    index = cIndex;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     print("Inside quiz_scr");
@@ -75,8 +92,34 @@ class _QuizScrState extends State<QuizScr> {
           ),
         ],
       ),
-      body: QuizScrBody(),
-      bottomNavigationBar: AppBottomNav(),
+      body: bodyList[index],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.graduationCap, size: 20),
+              label: 'Topics'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.leaderboard, size: 20), label: 'Leaderboard'),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.random, size: 20), label: 'Random'),
+        ],
+        currentIndex: index,
+        onTap: (int idx) {
+          switch (idx) {
+            case 0:
+              func(0);
+              break;
+            case 1:
+              func(1);
+              break;
+            case 2:
+              func(2);
+              break;
+          }
+        },
+        selectedItemColor: Theme.of(context).accentColor,
+        selectedFontSize: 18,
+      ),
     );
   }
 }
@@ -89,7 +132,6 @@ class QuizScrBody extends StatefulWidget {
 }
 
 class _QuizScrBodyState extends State<QuizScrBody> {
-  var _db = FirebaseFirestore.instance;
   late Future<List<Quiz2List>> quizList;
 
   @override
@@ -100,7 +142,7 @@ class _QuizScrBodyState extends State<QuizScrBody> {
 
   Future<List<Quiz2List>> func() async {
     print("Fetching Quiz Lists");
-    var a = await _db.collection('quizs2').get().then(
+    var a = await Globals.quizRef.get().then(
       (value) {
         return value.docs.map(
           (element) {

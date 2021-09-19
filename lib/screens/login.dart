@@ -26,8 +26,13 @@ class _LoginState extends State<Login> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            FlutterLogo(
-              size: 150,
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Image(
+                image: AssetImage('assets/QuizApp2.png'),
+                height: 100,
+                width: 100,
+              ),
             ),
             Text(
               'Login to Start',

@@ -19,6 +19,7 @@ class Globals {
   // };
 
   // Firestore References for Writes
+  static final quizRef = FirebaseFirestore.instance.collection('quizs2');
   static final userRef = FirebaseFirestore.instance.collection('users');
   static final cAuth = AuthService();
 }

@@ -42,12 +42,12 @@ class TakeQuiz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Inside TakeQuiz");
     if (Globals.cAuth.getUser == null) {
       print("No user logged in");
       Navigator.of(context).pushReplacementNamed('/sign_up');
     }
     Quiz2List? quiz = ModalRoute.of(context)?.settings.arguments as Quiz2List;
+    print("Inside TakeQuiz and quiz title is ${quiz.title}");
     return ChangeNotifierProvider(
       create: (context) {
         return QuizState();
@@ -137,6 +137,7 @@ class CongratsQuiz extends StatelessWidget {
   final Quiz2List quiz;
   late Report rep;
   bool isDisabled = false;
+  String _reason = "You have already completed this quiz";
 
   void func() async {
     rep = await Globals.userRef.doc(Globals.cAuth.getUser!.uid).get().then(
@@ -148,8 +149,12 @@ class CongratsQuiz extends StatelessWidget {
         print("User fetching failed $e");
       },
     );
-    if (rep.quizSolved.contains(quiz.title + quiz.difficulty)) {
+    if (rep.quizSolved.contains(quiz.title + quiz.difficulty) ||
+        quiz.title == "Random Quiz") {
       isDisabled = true;
+      if (quiz.title == "Random Quiz") {
+        _reason = "Random Quiz can't be marked complete";
+      }
     }
   }
 
@@ -180,7 +185,7 @@ class CongratsQuiz extends StatelessWidget {
             onPressed: () {
               if (isDisabled) {
                 SnackBar temp = SnackBar(
-                  content: Text("You have already completed this quiz"),
+                  content: Text(_reason),
                 );
                 ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(temp);

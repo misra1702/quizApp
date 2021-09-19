@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/home.dart';
 import 'package:quiz_app/screens/login.dart';
+import 'package:quiz_app/screens/random_quiz.dart';
 import 'package:quiz_app/services/auth.dart';
 import 'package:quiz_app/services/parseJson.dart';
 

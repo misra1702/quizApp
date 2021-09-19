@@ -34,8 +34,16 @@ class _SignUpState extends State<SignUp> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            FlutterLogo(
-              size: 150,
+            // FlutterLogo(
+            //   size: 150,
+            // ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Image(
+                image: AssetImage('assets/QuizApp2.png'),
+                height: 100,
+                width: 100,
+              ),
             ),
             TextField(
               controller: _email,

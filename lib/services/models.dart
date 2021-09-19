@@ -32,12 +32,15 @@ class Quiz2 {
   String correct_answer;
   List<String> incorrect_answers;
 
-  Quiz2(this.question, this.correct_answer, this.incorrect_answers);
+  Quiz2(
+      {required this.question,
+      required this.correct_answer,
+      required this.incorrect_answers});
 
   factory Quiz2.fromMap(Map<String, dynamic> data) {
     var temp = data['incorrect_answers'];
     List<String> inc = List<String>.from(temp);
-    return Quiz2(data['question'], data['correct_answer'], inc);
+    return Quiz2(question:data['question'], correct_answer:data['correct_answer'], incorrect_answers:inc);
   }
 }
 
@@ -46,7 +49,8 @@ class Report {
   int score;
   List<String> quizSolved;
 
-  Report({required this.emailID, required this.quizSolved, required this.score});
+  Report(
+      {required this.emailID, required this.quizSolved, required this.score});
 
   factory Report.fromMap(Map<String, dynamic> data) {
     List<dynamic> temp = data['quizSolved'].map((e) {
