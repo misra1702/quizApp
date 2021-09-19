@@ -1,5 +1,5 @@
 # QuizApp
-![alt text](https://github.com/misra1702/quizApp/master/SingUp.png?raw=true)
+![alt text](SingUp.png?raw=true)
 
 A new Flutter project.
 
