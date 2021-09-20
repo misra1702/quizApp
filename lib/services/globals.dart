@@ -6,17 +6,9 @@ import 'package:quiz_app/services/models.dart';
 
 /// Static global state. Immutable services that do not care about build context.
 class Globals {
-  // App Data
-  static final String title = 'Fireship';
-
   // Services
   static final FirebaseAnalytics analytics = FirebaseAnalytics();
 
-  // Data Models
-  // static final Map models = {
-  //   Quiz: (data) => Quiz.fromMap(data),
-  //   Report: (data) => Report.fromMap(data),
-  // };
 
   // Firestore References for Writes
   static final quizRef = FirebaseFirestore.instance.collection('quizs2');
